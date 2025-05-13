@@ -110,8 +110,9 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.527 0.154 150.069);
-}
 
+  --max-width-1440: 1440px;
+}
 
 @layer base {
   * {
@@ -119,6 +120,12 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .max-w-1440 {
+    max-width: 1440px;
   }
 }
 

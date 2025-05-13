@@ -1,23 +1,24 @@
-import { type Metadata } from 'next';
-import { ClerkProvider } from '@clerk/nextjs';
-import { Geist, Geist_Mono } from 'next/font/google';
-import './globals.css';
-import { neobrutalism } from '@clerk/themes';
-import Header from '@/components/custom/Header';
+import type React from "react";
+import type { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import { neobrutalism } from "@clerk/themes";
+import { ThemeProvider } from "@/providers/theme-provider";
 
 const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: 'Task Forge',
-  description: 'Your daily task manager',
+  title: "Task Forge",
+  description: "Your daily task manager",
 };
 
 export default function RootLayout({
@@ -31,12 +32,18 @@ export default function RootLayout({
         baseTheme: neobrutalism,
       }}
     >
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-secondary-foreground`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased max-w-1440 mx-auto`}
         >
-          <Header />
-          {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>

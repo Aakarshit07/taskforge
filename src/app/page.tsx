@@ -1,7 +1,7 @@
-export default function Home() {
-  return (
-    <div className="text-accent">
-      <h1>Home</h1>
-    </div>
-  );
+import React from "react";
+
+function page() {
+  return <div>page</div>;
 }
+
+export default page;
